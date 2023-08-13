@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFrame Example</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  #iframeContainer {
+    width: 100%;
+    max-width: 850px;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+  }
+  embed {
+    width: 100%;
+    border: none;
+  }
+  #buttonContainer {
+    margin-top: 20px;
+    width: 100%;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  #inputContainer {
+    margin-top: 20px;
+  }
+</style>
+
+
+</head>
+<body>
+<div id="iframeContainer">
+  <embed id="wibyme" src="http://wiby.me/surprise"></embed>
+</div>
+<div style="width: 80%" id="inputContainer">
+  <label for="url">URL:</label>
+  <input type="text" id="url" style="width: 80%" placeholder="" disabled>
+</div>
+<div id="buttonContainer">
+  <button id="imfeelinglucky">I'm Feeling Lucky</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+  const embedElement = document.getElementById("wibyme");
+  var embedSrc = embedElement.getAttribute("src");
+  const luckyButton = document.getElementById("imfeelinglucky");
+  const urlInput = document.getElementById("url");
+
+  var initialURL = "http://wiby.me/surprise";
+  luckyButton.addEventListener("click", function() {
+        console.log("I'm feeling lucky!");
+
+        var embedSrc = embedElement.getAttribute("src");
+        console.log("Embedded URL:", embedSrc);
+        var timestamp = new Date().getTime();
+        embedElement.setAttribute("src", "http://wiby.me/surprise?timestamp=" + timestamp);
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
+
